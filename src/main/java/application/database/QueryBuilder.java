@@ -24,13 +24,18 @@ public class QueryBuilder {
 
     public QueryBuilder insert(Table table, Column... columns) {
         query.append("INSERT INTO ")
-                .append(table);
+                .append(EnumHelper.getDBName(table));
+
+        int questionMark = (columns.length > 0 ? columns.length : table.COL_NUM);
+
         if (columns.length > 0) {
             query.append("(");
             addColumns(columns);
             query.append(")");
         }
-        prepareValues(3);
+
+        prepareValues(questionMark);
+
         return this;
     }
 
