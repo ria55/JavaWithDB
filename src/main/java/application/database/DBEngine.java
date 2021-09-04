@@ -1,6 +1,7 @@
 package application.database;
 
 import application.models.Dragon;
+import application.models.Rarity;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -48,9 +49,23 @@ public class DBEngine {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
+            while (resultSet.next()) {
+                long id = resultSet.getLong("id");        // resultSet.getLong(1);
+                String name = resultSet.getString("unique_name");
+                String text = resultSet.getString("dragon_text");
+                String rarityFromDB = resultSet.getString("rarity");
+                Rarity rarity = Rarity.valueOf(rarityFromDB);
+
+                Dragon dragon = new Dragon(id, name, text, rarity);
+
+                dragons.add(dragon);
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        return dragons;
     }
 
 }
