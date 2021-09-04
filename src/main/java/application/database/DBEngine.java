@@ -22,8 +22,8 @@ public class DBEngine {
                 "?useUnicode=yes&characterEncoding=UTF-8";
 
         Properties properties = new Properties();
-        properties.put("user", "root");
-        properties.put("password", "password");
+        properties.put("user", System.getenv("DB_USER"));
+        properties.put("password", System.getenv("DB_PASSWORD"));
 
         try {
             return DriverManager.getConnection(url, properties);
