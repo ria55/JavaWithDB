@@ -11,7 +11,7 @@ public enum Rarity {
 
     public static Rarity find(String name) {
         for (Rarity rarity : Rarity.values()) {
-            if (rarity.toString().equalsIgnoreCase(name)) {
+            if (rarity.toString().replace("_", " ").equalsIgnoreCase(name)) {
                 return rarity;
             }
         }
