@@ -1,6 +1,7 @@
 package application.database;
 
 import application.models.Dragon;
+import application.models.Element;
 import application.models.Rarity;
 
 import java.sql.*;
@@ -93,6 +94,51 @@ public class DBEngine {
         }
 
         return dragons;
+    }
+
+    public Element findElementByName(String name) {
+        String query = "SELECT * FROM element WHERE element_name = ?";
+
+        Element element = null;
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, name);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String elementName = resultSet.getString("element_name");
+
+                element = new Element(elementName);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return element;
+    }
+
+    public List<Element> findDragonsElement(long dragonId) {
+        String query = "SELECT * FROM dragons_element WHERE dragon_id = ?";
+
+        List<Element> elements = new ArrayList<>();
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setLong(1, dragonId);
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+                String elementName = resultSet.getString("element_name");
+                Element element = findElementByName(elementName);
+                elements.add(element);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return elements;
     }
 
 }
