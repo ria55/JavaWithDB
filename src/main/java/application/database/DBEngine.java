@@ -38,7 +38,7 @@ public class DBEngine {
     }
 
     public Dragon findDragonByName(String searchName) {
-        String query = "SELECT * FROM dragon WHERE unique_name = ?";
+        String query = "SELECT * FROM " + DBHelper.TABLE_DRAGON + " WHERE unique_name = ?";
 
         Dragon result = null;
 
@@ -67,7 +67,7 @@ public class DBEngine {
     }
 
     public List<Dragon> listAllDragons() {
-        String query = "SELECT * FROM dragon";
+        String query = "SELECT * FROM " + DBHelper.TABLE_DRAGON;
 
         List<Dragon> dragons = new ArrayList<>();
 
@@ -98,7 +98,7 @@ public class DBEngine {
     }
 
     public Element findElementByName(String name) {
-        String query = "SELECT * FROM element WHERE element_name = ?";
+        String query = "SELECT * FROM " + DBHelper.TABLE_ELEMENT + " WHERE element_name = ?";
 
         Element element = null;
 
@@ -121,7 +121,7 @@ public class DBEngine {
     }
 
     public List<Element> findDragonsElement(long dragonId) {
-        String query = "SELECT * FROM dragons_element WHERE dragon_id = ?";
+        String query = "SELECT * FROM " + DBHelper.TABLE_DRAGONS_ELEMENT + " WHERE dragon_id = ?";
 
         List<Element> elements = new ArrayList<>();
 
