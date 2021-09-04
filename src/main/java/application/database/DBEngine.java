@@ -137,7 +137,6 @@ public class DBEngine {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return elements;
     }
 
