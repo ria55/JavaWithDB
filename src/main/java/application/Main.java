@@ -11,8 +11,8 @@ public class Main {
         DBEngine engine = new DBEngine();       // should connect
 
         if (engine.isConnected()) {
-            List<Dragon> dragons = engine.listAllDragons();
-            System.out.println(dragons.toString());
+            Dragon dragon = engine.findDragonByName("my dragon");
+            System.out.println(dragon);
         } else {
             System.out.println("no connection");
         }
