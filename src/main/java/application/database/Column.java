@@ -11,10 +11,6 @@ public enum Column {
     DRAGON_ID,
     ELEMENT_NAME,
 
-    ICON_IMG;
-
-    public String dbName() {
-        return name().toLowerCase();
-    }
+    ICON_IMG
 
 }

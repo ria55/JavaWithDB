@@ -1,5 +1,6 @@
 package application.database;
 
+import application.helpers.EnumHelper;
 import application.models.Dragon;
 import application.models.Element;
 import application.models.Rarity;
@@ -148,7 +149,7 @@ public class DBEngine {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, dragon.getUniqueName());
             ps.setString(2, dragon.getDragonText());
-            ps.setInt(3, dragon.getRarity().getDBIndex());
+            ps.setInt(3, EnumHelper.getDBIndex(dragon.getRarity()));
 
             ps.executeUpdate();
             ps.close();
