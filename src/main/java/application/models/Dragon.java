@@ -8,4 +8,11 @@ public class Dragon {
     private Rarity rarity;
     private byte[] design;
 
+    public Dragon(long id, String uniqueName, String dragonText, Rarity rarity) {
+        this.id = id;
+        this.uniqueName = uniqueName;
+        this.dragonText = dragonText;
+        this.rarity = rarity;
+    }
+
 }
