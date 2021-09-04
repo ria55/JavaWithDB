@@ -141,4 +141,23 @@ public class DBEngine {
         return elements;
     }
 
+    public boolean addDragonToDB(Dragon dragon) {
+        String query = "INSERT INTO dragon (unique_name, dragon_text, rarity) VALUES (?, ?, ?);";
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, dragon.getUniqueName());
+            ps.setString(2, dragon.getDragonText());
+            ps.setInt(3, dragon.getRarity().getDBIndex());
+
+            ps.executeUpdate();
+            ps.close();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

@@ -2,12 +2,12 @@ package application.models;
 
 public enum Rarity {
 
-    COMMON,
-    RARE,
-    VERY_RARE,
-    EPIC,
-    LEGENDARY,
-    HEROIC;
+    COMMON,     // 1-es az adatbázisban
+    RARE,       // 2
+    VERY_RARE,  // 3
+    EPIC,       // 4
+    LEGENDARY,  // 5
+    HEROIC;     // 6
 
     public static Rarity find(String name) {
         for (Rarity rarity : Rarity.values()) {
@@ -16,6 +16,10 @@ public enum Rarity {
             }
         }
         return Rarity.RARE;
+    }
+
+    public int getDBIndex() {
+        return ordinal() + 1;
     }
 
 }
