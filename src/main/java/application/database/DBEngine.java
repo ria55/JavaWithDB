@@ -1,8 +1,10 @@
 package application.database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import application.models.Dragon;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class DBEngine {
@@ -30,6 +32,24 @@ public class DBEngine {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    /*
+        utasítás, amely visszaad minden sárkányt a DB-ből
+     */
+
+    public List<Dragon> listAllDragons() {
+        String query = "SELECT * FROM dragon";
+
+        List<Dragon> dragons = new ArrayList<>();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
