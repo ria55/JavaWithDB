@@ -10,7 +10,10 @@ public class QueryBuilder {
         query = new StringBuilder();
     }
 
-    public QueryBuilder select(Table table, Column... columns) {
+    // select(Table.DRAGON)
+    // select(Table.DRAGON, Column.ID, Column.NAME)
+
+    public QueryBuilder select(Table table, Column... columns) {        // columns egy Column[] tömb lesz
         query.append("SELECT ");
         if (columns.length > 0) {
             addColumns(columns);
@@ -48,6 +51,7 @@ public class QueryBuilder {
     }
 
     private void addColumns(Column... columns) {
+        // fori ciklussal, és az utolsó elem után nem rakok vesszőt
         for (Column column : columns) {
             query.append(EnumHelper.getDBName(column))
                 .append(", ");

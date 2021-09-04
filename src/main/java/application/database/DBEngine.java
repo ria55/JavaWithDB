@@ -40,7 +40,10 @@ public class DBEngine {
 
     public Dragon findDragonByName(String searchName) {
         //String query = "SELECT * FROM dragon WHERE unique_name = ?";
-        String query = new QueryBuilder().select(Table.DRAGON).where(Column.UNIQUE_NAME, false).build();
+        String query = new QueryBuilder()
+                .select(Table.DRAGON)
+                .where(Column.UNIQUE_NAME, false)
+                .build();
 
         Dragon result = null;
 
@@ -70,7 +73,9 @@ public class DBEngine {
 
     public List<Dragon> listAllDragons() {
         //String query = "SELECT * FROM dragon";
-        String query = new QueryBuilder().select(Table.DRAGON).build();
+        String query = new QueryBuilder()
+                .select(Table.DRAGON)
+                .build();
 
         List<Dragon> dragons = new ArrayList<>();
 
@@ -102,7 +107,10 @@ public class DBEngine {
 
     public Element findElementByName(String name) {
         //String query = "SELECT * FROM " + DBHelper.TABLE_ELEMENT + " WHERE element_name = ?";
-        String query = new QueryBuilder().select(Table.ELEMENT).where(Column.ELEMENT_NAME, false).build();
+        String query = new QueryBuilder()
+                .select(Table.ELEMENT)
+                .where(Column.ELEMENT_NAME, false)
+                .build();
 
         Element element = null;
 

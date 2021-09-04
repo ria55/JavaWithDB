@@ -28,6 +28,10 @@ public class Main {
             System.out.println("no connection");
         }
 
+        /*
+        String query = "SELECT * FROM dragon";
+         */
+
     }
 
 }
