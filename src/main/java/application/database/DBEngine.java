@@ -50,11 +50,13 @@ public class DBEngine {
             ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
+                // getXXX("column_name_in_DB")
                 long id = resultSet.getLong("id");        // resultSet.getLong(1);
                 String name = resultSet.getString("unique_name");
                 String text = resultSet.getString("dragon_text");
-                String rarityFromDB = resultSet.getString("rarity");
+                String rarityFromDB = resultSet.getString("rarity").toUpperCase();
                 Rarity rarity = Rarity.valueOf(rarityFromDB);
+                // Rarity rarity = Rarity.find(rarityFromDB);
 
                 Dragon dragon = new Dragon(id, name, text, rarity);
 
