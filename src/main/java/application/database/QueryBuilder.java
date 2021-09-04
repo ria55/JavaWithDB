@@ -22,12 +22,31 @@ public class QueryBuilder {
         return this;
     }
 
+    public QueryBuilder insert(Table table, Column... columns) {
+        query.append("INSERT INTO ")
+                .append(table);
+        if (columns.length > 0) {
+            query.append("(");
+            addColumns(columns);
+            query.append(")");
+        }
+        prepareValues(3);
+        return this;
+    }
+
     private void addColumns(Column... columns) {
         for (Column column : columns) {
             query.append(EnumHelper.getDBName(column))
                 .append(", ");
         }
         query.setLength(query.length() - 2);
+    }
+
+    private void prepareValues(int repeat) {
+        query.append(" VALUES (")
+                .append("?,".repeat(repeat));
+        query.setLength(query.length() - 1);
+        query.append(")");
     }
 
     public String build() {
