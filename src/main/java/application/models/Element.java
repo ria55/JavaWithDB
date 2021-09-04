@@ -26,4 +26,9 @@ public class Element {
     public void setIcon_img(byte[] icon_img) {
         this.icon_img = icon_img;
     }
+
+    @Override
+    public String toString() {
+        return elementName;
+    }
 }

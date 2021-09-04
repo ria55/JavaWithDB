@@ -85,6 +85,7 @@ public class DBEngine {
                 // Rarity rarity = Rarity.find(rarityFromDB);
 
                 Dragon dragon = new Dragon(id, name, text, rarity);
+                dragon.setElements(findDragonsElement(id));
 
                 dragons.add(dragon);
             }
