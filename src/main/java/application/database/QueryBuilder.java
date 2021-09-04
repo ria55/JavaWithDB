@@ -22,6 +22,14 @@ public class QueryBuilder {
         return this;
     }
 
+    public QueryBuilder where(Column column, boolean useLike) {
+        query.append(" WHERE ")
+                .append(EnumHelper.getDBName(column))
+                .append( (useLike ? " LIKE " : " = ") )
+                .append("?");
+        return this;
+    }
+
     public QueryBuilder insert(Table table, Column... columns) {
         query.append("INSERT INTO ")
                 .append(EnumHelper.getDBName(table));
