@@ -1,16 +1,26 @@
 package application;
 
+import application.annotations.AnnotationController;
+import application.annotations.TestTable;
 import application.database.Column;
 import application.database.QueryBuilder;
 import application.database.Table;
 import application.helpers.EnumHelper;
+import application.models.Dragon;
 import application.models.Rarity;
+
+import java.lang.reflect.Field;
 
 public class TestField {
 
     public static void main(String[] args) {
 
-        testEnumNameHandling();
+        //testEnumNameHandling();
+
+        AnnotationController controller = new AnnotationController();
+
+        String e = controller.getTableStatement(new TestTable());
+        System.out.println(e);
 
     }
 
