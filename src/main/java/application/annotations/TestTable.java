@@ -5,7 +5,6 @@ import application.helpers.SQLType;
 @Table
 public class TestTable {
 
-    @Skip
     private long id;
 
     @Column(length = 50)

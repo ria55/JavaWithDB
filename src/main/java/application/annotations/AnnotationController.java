@@ -1,5 +1,7 @@
 package application.annotations;
 
+import application.helpers.SQLType;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.Objects;
@@ -28,11 +30,13 @@ public class AnnotationController {
     }
 
     private String getDBName(Field field) {
-        String name = field.getAnnotation(Column.class).name();
-        if (name.isBlank()) {
-            return convertName(field.getName());
+        if (isAnnotated(field, Column.class)) {
+            String name = field.getAnnotation(Column.class).name();
+            if (!name.isBlank()) {
+                return name;
+            }
         }
-        return name;
+        return convertName(field.getName());
     }
 
     private String getDBName(Object object) {
@@ -45,16 +49,22 @@ public class AnnotationController {
 
     public String getTableStatement(Object o) {
         Class<?> cl = o.getClass();
-        StringBuilder b = new StringBuilder("CREATE TABLE IF NOT EXISTS " + getDBName(o));
+        StringBuilder b = new StringBuilder("CREATE TABLE IF NOT EXISTS ");
+        b.append(getDBName(o)).append(" (");
 
         for (Field field : cl.getDeclaredFields()) {
-            field.setAccessible(true);
+            //field.setAccessible(true);
             if (!isAnnotated(field, Skip.class)) {
-                if (isAnnotated(field, Column.class)) {
-                    b.append("\n").append(getDBName(field));
-                }
+                b.append("\n\t")
+                        .append(getDBName(field))
+                        .append(" ")
+                        .append(SQLType.convertType(field.getType().getSimpleName()))
+                        .append(",");
             }
         }
+
+        b.setLength(b.length() - 1);
+        b.append("\n);");
 
         return b.toString();
     }

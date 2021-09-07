@@ -3,7 +3,8 @@ package application.helpers;
 public enum SQLType {
 
     INT("byte", "short", "int", "long"),
-    VARCHAR("String");
+    VARCHAR("String"),
+    BOOL("boolean");
 
     private final String[] javaTypes;
 
