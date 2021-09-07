@@ -68,6 +68,7 @@ public class AnnotationController {
 
         for (Field field : cl.getDeclaredFields()) {
             if (!isAnnotated(field, Skip.class)) {
+                // TODO handle @Column
                 b.append("\n\t")
                         .append(getDBName(field))
                         .append(" ")

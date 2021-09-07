@@ -9,4 +9,7 @@ public class TestTable2 {
     private String text;
     private Rarity rarity;
 
+    @FK(reference = TestTable.class, referenceField = "id")
+    private TestTable testTable;
+
 }

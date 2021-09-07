@@ -11,6 +11,9 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface Column {
     String name() default "";
-    SQLType type() default SQLType.VARCHAR;
+    SQLType type() default SQLType.VARCHAR;         // TODO default in method, too... ???
     int length() default 255;
+    boolean isNotNull() default false;
+    boolean isUnique() default false;
+    String defaultValue() default "";
 }
