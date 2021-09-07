@@ -2,7 +2,6 @@ package application;
 
 import application.annotations.AnnotationController;
 import application.annotations.Table;
-import application.annotations.TestTable;
 import application.database.ColumnName;
 import application.database.QueryBuilder;
 import application.database.TableName;
