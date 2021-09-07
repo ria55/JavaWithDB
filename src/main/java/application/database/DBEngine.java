@@ -41,8 +41,8 @@ public class DBEngine {
     public Dragon findDragonByName(String searchName) {
         //String query = "SELECT * FROM dragon WHERE unique_name = ?";
         String query = new QueryBuilder()
-                .select(Table.DRAGON)
-                .where(Column.UNIQUE_NAME, false)
+                .select(TableName.DRAGON)
+                .where(ColumnName.UNIQUE_NAME, false)
                 .build();
 
         Dragon result = null;
@@ -74,7 +74,7 @@ public class DBEngine {
     public List<Dragon> listAllDragons() {
         //String query = "SELECT * FROM dragon";
         String query = new QueryBuilder()
-                .select(Table.DRAGON)
+                .select(TableName.DRAGON)
                 .build();
 
         List<Dragon> dragons = new ArrayList<>();
@@ -108,8 +108,8 @@ public class DBEngine {
     public Element findElementByName(String name) {
         //String query = "SELECT * FROM " + DBHelper.TABLE_ELEMENT + " WHERE element_name = ?";
         String query = new QueryBuilder()
-                .select(Table.ELEMENT)
-                .where(Column.ELEMENT_NAME, false)
+                .select(TableName.ELEMENT)
+                .where(ColumnName.ELEMENT_NAME, false)
                 .build();
 
         Element element = null;
@@ -134,7 +134,7 @@ public class DBEngine {
 
     public List<Element> findDragonsElement(long dragonId) {
         //String query = "SELECT * FROM " + DBHelper.TABLE_DRAGONS_ELEMENT + " WHERE dragon_id = ?";
-        String query = new QueryBuilder().select(Table.DRAGONS_ELEMENT).where(Column.DRAGON_ID, false).build();
+        String query = new QueryBuilder().select(TableName.DRAGONS_ELEMENT).where(ColumnName.DRAGON_ID, false).build();
 
         List<Element> elements = new ArrayList<>();
 
@@ -156,7 +156,7 @@ public class DBEngine {
 
     public boolean addDragonToDB(Dragon dragon) {
         //String query = "INSERT INTO dragon (unique_name, dragon_text, rarity) VALUES (?, ?, ?);";
-        String query = new QueryBuilder().insert(Table.DRAGON, Column.UNIQUE_NAME, Column.DRAGON_TEXT, Column.RARITY).build();
+        String query = new QueryBuilder().insert(TableName.DRAGON, ColumnName.UNIQUE_NAME, ColumnName.DRAGON_TEXT, ColumnName.RARITY).build();
 
         try {
             PreparedStatement ps = connection.prepareStatement(query);

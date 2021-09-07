@@ -10,35 +10,35 @@ public class QueryBuilder {
         query = new StringBuilder();
     }
 
-    public QueryBuilder select(Table table, Column... columns) {
+    public QueryBuilder select(TableName tableName, ColumnName... columnNames) {
         query.append("SELECT ");
-        if (columns.length > 0) {
-            addColumns(columns);
+        if (columnNames.length > 0) {
+            addColumns(columnNames);
         } else {
             query.append("*");
         }
         query.append(" FROM ")
-            .append(EnumHelper.getDBName(table, false));
+            .append(EnumHelper.getDBName(tableName, false));
         return this;
     }
 
-    public QueryBuilder where(Column column, boolean useLike) {
+    public QueryBuilder where(ColumnName columnName, boolean useLike) {
         query.append(" WHERE ")
-                .append(EnumHelper.getDBName(column, false))
+                .append(EnumHelper.getDBName(columnName, false))
                 .append( (useLike ? " LIKE " : " = ") )
                 .append("?");
         return this;
     }
 
-    public QueryBuilder insert(Table table, Column... columns) {
+    public QueryBuilder insert(TableName tableName, ColumnName... columnNames) {
         query.append("INSERT INTO ")
-                .append(EnumHelper.getDBName(table, false));
+                .append(EnumHelper.getDBName(tableName, false));
 
-        int questionMark = (columns.length > 0 ? columns.length : table.COL_NUM);
+        int questionMark = (columnNames.length > 0 ? columnNames.length : tableName.COL_NUM);
 
-        if (columns.length > 0) {
+        if (columnNames.length > 0) {
             query.append("(");
-            addColumns(columns);
+            addColumns(columnNames);
             query.append(")");
         }
 
@@ -47,9 +47,9 @@ public class QueryBuilder {
         return this;
     }
 
-    private void addColumns(Column... columns) {
-        for (Column column : columns) {
-            query.append(EnumHelper.getDBName(column, false))
+    private void addColumns(ColumnName... columnNames) {
+        for (ColumnName columnName : columnNames) {
+            query.append(EnumHelper.getDBName(columnName, false))
                 .append(", ");
         }
         query.setLength(query.length() - 2);

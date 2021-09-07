@@ -1,6 +1,6 @@
 package application.database;
 
-public enum Table {
+public enum TableName {
 
     DRAGON(5),
     ELEMENT(3),
@@ -8,7 +8,7 @@ public enum Table {
 
     public final int COL_NUM;
 
-    Table(int colNum) {
+    TableName(int colNum) {
         COL_NUM = colNum;
     }
 

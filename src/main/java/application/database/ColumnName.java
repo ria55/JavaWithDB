@@ -1,6 +1,6 @@
 package application.database;
 
-public enum Column {
+public enum ColumnName {
 
     ID,
     UNIQUE_NAME,
