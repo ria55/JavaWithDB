@@ -10,10 +10,7 @@ public class QueryBuilder {
         query = new StringBuilder();
     }
 
-    // select(Table.DRAGON)
-    // select(Table.DRAGON, Column.ID, Column.NAME)
-
-    public QueryBuilder select(Table table, Column... columns) {        // columns egy Column[] tömb lesz
+    public QueryBuilder select(Table table, Column... columns) {
         query.append("SELECT ");
         if (columns.length > 0) {
             addColumns(columns);
@@ -21,13 +18,13 @@ public class QueryBuilder {
             query.append("*");
         }
         query.append(" FROM ")
-            .append(EnumHelper.getDBName(table));
+            .append(EnumHelper.getDBName(table, false));
         return this;
     }
 
     public QueryBuilder where(Column column, boolean useLike) {
         query.append(" WHERE ")
-                .append(EnumHelper.getDBName(column))
+                .append(EnumHelper.getDBName(column, false))
                 .append( (useLike ? " LIKE " : " = ") )
                 .append("?");
         return this;
@@ -35,7 +32,7 @@ public class QueryBuilder {
 
     public QueryBuilder insert(Table table, Column... columns) {
         query.append("INSERT INTO ")
-                .append(EnumHelper.getDBName(table));
+                .append(EnumHelper.getDBName(table, false));
 
         int questionMark = (columns.length > 0 ? columns.length : table.COL_NUM);
 
@@ -51,9 +48,8 @@ public class QueryBuilder {
     }
 
     private void addColumns(Column... columns) {
-        // fori ciklussal, és az utolsó elem után nem rakok vesszőt
         for (Column column : columns) {
-            query.append(EnumHelper.getDBName(column))
+            query.append(EnumHelper.getDBName(column, false))
                 .append(", ");
         }
         query.setLength(query.length() - 2);
