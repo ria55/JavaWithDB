@@ -16,6 +16,10 @@ public class AnnotationController {
         return (!Objects.isNull(field) && field.isAnnotationPresent(annotationClass));
     }
 
+    public boolean isAnnotated(Class<?> cl, Class<? extends Annotation> annotationClass) {
+        return (!Objects.isNull(cl) && cl.isAnnotationPresent(annotationClass));
+    }
+
     private String convertName(String javaName) {
         StringBuilder b = new StringBuilder(javaName.substring(0, 1).toLowerCase());
         for (int i = 1; i < javaName.length(); i++) {

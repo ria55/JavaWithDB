@@ -3,11 +3,12 @@ package application.annotations;
 import application.helpers.SQLType;
 
 @Table
-public class TestTable {
+public class TestTable {    // default: test_table
 
+    @Skip
     private long id;
 
-    @Column(length = 50)
+    //@Column(length = 50)
     private String username;
 
     @Column(name = "UserEmail")
