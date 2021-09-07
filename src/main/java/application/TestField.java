@@ -19,14 +19,7 @@ public class TestField {
 
     public static void main(String[] args) {
 
-        AnnotationController controller = new AnnotationController();
-
-        String testTable = controller.getTableStatement(new TestTable());
-
-        System.out.println(testTable);
-
-        System.out.println("--------------------");
-
+        // TODO replace...
         annotatedClassFinder();
 
     }
@@ -56,8 +49,11 @@ public class TestField {
 
         if (files != null) {
             List<Class<?>> classes = getAnnotatedClasses(files, modelsPackage, annotationClass);
-            for (Class<?> cls : classes) {
-                System.out.println(cls.getSimpleName());
+            if (classes.size() > 0) {
+                AnnotationController controller = new AnnotationController();
+                for (Class<?> cl : classes) {
+                    System.out.println(controller.getTableStatement(cl));
+                }
             }
         }
     }
@@ -73,6 +69,7 @@ public class TestField {
         return new File(root.getFile()).listFiles((dir, name) -> name.endsWith(".class"));
     }
 
+    // TODO rootPackage and annotationClass should be in app.properties...
     private static List<Class<?>> getAnnotatedClasses(File[] files, String rootPackage, Class<? extends Annotation> annotationClass) {
         List<Class<?>> classes = new ArrayList<>();
 

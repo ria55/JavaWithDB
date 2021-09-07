@@ -6,6 +6,9 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.Objects;
 
+// TODO convertName methods should be not here...
+// TODO methods with Object param are unnecessary
+
 public class AnnotationController {
 
     public boolean isAnnotated(Object o, Class<? extends Annotation> annotationClass) {
@@ -51,13 +54,19 @@ public class AnnotationController {
         return name;
     }
 
-    public String getTableStatement(Object o) {
-        Class<?> cl = o.getClass();
+    private String getDBName(Class<?> cl) {
+        String name = cl.getAnnotation(Table.class).name();
+        if (name.isBlank()) {
+            return convertName(cl.getSimpleName());
+        }
+        return name;
+    }
+
+    public String getTableStatement(Class<?> cl) {
         StringBuilder b = new StringBuilder("CREATE TABLE IF NOT EXISTS ");
-        b.append(getDBName(o)).append(" (");
+        b.append(getDBName(cl)).append(" (");
 
         for (Field field : cl.getDeclaredFields()) {
-            //field.setAccessible(true);
             if (!isAnnotated(field, Skip.class)) {
                 b.append("\n\t")
                         .append(getDBName(field))
