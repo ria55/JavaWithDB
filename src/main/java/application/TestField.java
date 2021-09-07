@@ -9,16 +9,21 @@ import application.helpers.EnumHelper;
 import application.models.Rarity;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class TestField {
 
     public static void main(String[] args) {
 
         // TODO replace...
+        // TODO handle better...
         annotatedClassFinder();
 
     }
@@ -40,7 +45,7 @@ public class TestField {
     }
 
     private static void annotatedClassFinder() {
-        String modelsPackage = "application.annotations";               // TODO app.properties
+        String modelsPackage = getRootPackageName();
         Class<? extends Annotation> annotationClass = Table.class;      // TODO app.properties
         URL root = getRoot(modelsPackage);
 
@@ -55,6 +60,18 @@ public class TestField {
                 }
             }
         }
+    }
+
+    private static String getRootPackageName() {
+        try {
+            Properties properties = new Properties();
+            properties.loadFromXML(new FileInputStream("props.xml"));
+            return properties.getProperty("models-package");
+        } catch (IOException e) {
+            e.printStackTrace();        // TODO log
+        }
+
+        return "";
     }
 
     private static URL getRoot(String packageName) {
