@@ -8,11 +8,6 @@ import java.io.IOException;
 
 public record LogHandler(Class<?> cl, String filename) {
 
-    private void log(String methodName, LogType logType, String message) {
-        LogMessage toLog = new LogMessage(cl, methodName, logType, message);
-        writeLog(toLog.toString());
-    }
-
     public void info(String methodName, String message) {
         log(methodName, LogType.INFO, message);
     }
@@ -23,6 +18,11 @@ public record LogHandler(Class<?> cl, String filename) {
 
     public void error(String methodName, String message) {
         log(methodName, LogType.ERROR, message);
+    }
+
+    private void log(String methodName, LogType logType, String message) {
+        LogMessage toLog = new LogMessage(cl, methodName, logType, message);
+        writeLog(toLog.toString());
     }
 
     private void writeLog(String text) {
