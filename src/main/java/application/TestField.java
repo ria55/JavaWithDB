@@ -6,11 +6,13 @@ import application.database.ColumnName;
 import application.database.QueryBuilder;
 import application.database.TableName;
 import application.helpers.EnumHelper;
+import application.helpers.PropertiesHandler;
 import application.models.Rarity;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.annotation.Annotation;
 import java.net.URL;
 import java.util.ArrayList;
@@ -23,6 +25,8 @@ public class TestField {
 
         // TODO replace...
         // TODO handle better...
+        // annotatedClassFinder();
+
         annotatedClassFinder();
 
     }
@@ -44,8 +48,8 @@ public class TestField {
     }
 
     private static void annotatedClassFinder() {
-        String modelsPackage = getRootPackageName();
-        Class<? extends Annotation> annotationClass = Table.class;      // TODO app.properties
+        String modelsPackage = PropertiesHandler.getInstance().getProperty("models-package");
+        Class<? extends Annotation> annotationClass = Table.class;
         URL root = getRoot(modelsPackage);
 
         File[] files = getFiles(root);
@@ -59,18 +63,6 @@ public class TestField {
                 }
             }
         }
-    }
-
-    private static String getRootPackageName() {
-        try {
-            Properties properties = new Properties();
-            properties.loadFromXML(new FileInputStream("props.xml"));
-            return properties.getProperty("models-package");
-        } catch (IOException e) {
-            e.printStackTrace();        // TODO log
-        }
-
-        return "";
     }
 
     private static URL getRoot(String packageName) {
