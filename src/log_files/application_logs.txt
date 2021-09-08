@@ -1,0 +1,4 @@
+ERROR::2021-09-08_22:26:28::application.database.DBEngine::connect()::Environment variables not found.
+ERROR::2021-09-08_22:27:07::application.database.DBEngine::connect()::Access denied for user 'root'@'localhost' (using password: YES)
+ERROR::2021-09-08_22:44:17::application.database.DBEngine::connect()::Environment variables not found.
+ERROR::2021-09-08_22:46:08::application.database.DBEngine::connect()::Environment variables not found.

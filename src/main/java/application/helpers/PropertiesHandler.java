@@ -42,6 +42,10 @@ public class PropertiesHandler {
     }
 
     public String getProperty(String propertyName) {
+        String value = handler.properties.getProperty(propertyName);
+        if (value != null && value.charAt(0) == '$') {
+            return System.getenv(value.substring(1));
+        }
         return handler.properties.getProperty(propertyName);
     }
 

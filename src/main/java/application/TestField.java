@@ -3,6 +3,7 @@ package application;
 import application.annotations.AnnotationController;
 import application.annotations.Table;
 import application.database.ColumnName;
+import application.database.DBEngine;
 import application.database.QueryBuilder;
 import application.database.TableName;
 import application.helpers.EnumHelper;
@@ -27,7 +28,9 @@ public class TestField {
         // TODO handle better...
         // annotatedClassFinder();
 
-        Properties properties = PropertiesHandler.getInstance().getProperties();
+        DBEngine engine = new DBEngine();
+
+        System.out.println(engine.isConnected());
 
     }
 

@@ -1,6 +1,8 @@
 package application.database;
 
 import application.helpers.EnumHelper;
+import application.helpers.PropertiesHandler;
+import application.logger.LogHandler;
 import application.models.Dragon;
 import application.models.Element;
 import application.models.Rarity;
@@ -12,9 +14,13 @@ import java.util.Properties;
 
 public class DBEngine {
 
-    private Connection connection;
+    private static final LogHandler LOG = new LogHandler(DBEngine.class, "application_logs.txt");
+
+    private final PropertiesHandler properties;
+    private final Connection connection;
 
     public DBEngine() {
+        properties = PropertiesHandler.getInstance();
         connection = connect();
     }
 
@@ -22,20 +28,33 @@ public class DBEngine {
         return (connection != null);
     }
 
-    private Connection connect() {
-        String url = "jdbc:mysql://localhost:3306/dragonDB" +
-                "?useUnicode=yes&characterEncoding=UTF-8";
+    private String getURL() {
+        String mysqlURL = properties.getProperty("mysql-url") + properties.getProperty("db-name");
+        String props = properties.getProperty("mysql-props");
 
-        Properties properties = new Properties();
-        properties.put("user", System.getenv("DB_USER"));
-        properties.put("password", System.getenv("DB_PASSWORD"));
+        if (props != null) {
+            mysqlURL += "?" + props;
+        }
+
+        return mysqlURL;
+    }
+
+    private Connection connect() {
+        String url = getURL();
 
         try {
+            Properties properties = new Properties();
+            properties.put("user", this.properties.getProperty("db-user"));
+            properties.put("password", this.properties.getProperty("db-password"));
+
             return DriverManager.getConnection(url, properties);
         } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
+            LOG.error("connect()", e.getMessage());
+        } catch (NullPointerException e) {
+            LOG.error("connect()", "Environment variables not found.");
         }
+
+        return null;
     }
 
     public Dragon findDragonByName(String searchName) {
@@ -66,7 +85,7 @@ public class DBEngine {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.error("findDragonByName(String searchName)", e.getMessage());
         }
         return result;
     }
@@ -99,7 +118,7 @@ public class DBEngine {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.error("listAllDragons()", e.getMessage());
         }
 
         return dragons;
@@ -126,7 +145,7 @@ public class DBEngine {
                 element = new Element(elementName);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.error("findElementByName(String name)", e.getMessage());
         }
 
         return element;
@@ -149,7 +168,7 @@ public class DBEngine {
                 elements.add(element);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.error("findDragonsElement(long dragonId)", e.getMessage());
         }
         return elements;
     }
@@ -169,7 +188,7 @@ public class DBEngine {
 
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.error("addDragonToDB(Dragon dragon)", e.getMessage());
             return false;
         }
     }
