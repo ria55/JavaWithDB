@@ -1,4 +1,4 @@
-package application.database;
+package complements.database;
 
 public enum TableName {
 

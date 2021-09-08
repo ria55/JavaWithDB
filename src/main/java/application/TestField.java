@@ -2,10 +2,10 @@ package application;
 
 import complements.annotations.AnnotationController;
 import complements.annotations.Table;
-import application.database.ColumnName;
-import application.database.DBEngine;
-import application.database.QueryBuilder;
-import application.database.TableName;
+import complements.database.ColumnName;
+import application.services.DBEngine;
+import complements.database.QueryBuilder;
+import complements.database.TableName;
 import application.helpers.EnumHelper;
 import complements.PropertiesHandler;
 import complements.logger.LogHandler;
@@ -25,11 +25,8 @@ public class TestField {
 
         // TODO replace...
         // TODO handle better...
-        // annotatedClassFinder();
 
-        DBEngine engine = new DBEngine();
-
-        System.out.println(engine.isConnected());
+        annotatedClassFinder();
 
     }
 

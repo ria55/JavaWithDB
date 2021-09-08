@@ -1,6 +1,6 @@
 package complements.annotations;
 
-import application.helpers.SQLType;
+import complements.database.SQLType;
 
 @Table
 public class TestTable {    // default: test_table

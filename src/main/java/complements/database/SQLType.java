@@ -1,4 +1,4 @@
-package application.helpers;
+package complements.database;
 
 public enum SQLType {
 
