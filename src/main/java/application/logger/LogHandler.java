@@ -28,18 +28,12 @@ public record LogHandler(Class<?> cl, String filename) {
     private void writeLog(String text) {
         String filePath = PropertiesHandler.getInstance().getProperty("log-root-directory") + filename;
         File file = new File(filePath);
-        String toWrite = "";
-
-        if (file.exists()) {
-            toWrite = "\n";
-        }
-        toWrite += text;
+        String toWrite = (file.exists() ? "\n" : "") + text;
 
         try {
             FileWriter writer = new FileWriter(filePath, true);
             writer.write(toWrite);
             writer.close();
-
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
