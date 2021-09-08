@@ -7,19 +7,18 @@ import application.database.QueryBuilder;
 import application.database.TableName;
 import application.helpers.EnumHelper;
 import application.helpers.PropertiesHandler;
+import application.logger.LogHandler;
 import application.models.Rarity;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.annotation.Annotation;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 public class TestField {
+
+    private static final LogHandler LOG = new LogHandler(TestField.class, "test_log_file.txt");
 
     public static void main(String[] args) {
 
@@ -27,7 +26,13 @@ public class TestField {
         // TODO handle better...
         // annotatedClassFinder();
 
-        annotatedClassFinder();
+        String[] strings = {"kiscica"};
+
+        try {
+            System.out.println(strings[10]);
+        } catch (Exception e) {
+            LOG.info("main(String[] args)", e.getMessage());
+        }
 
     }
 
