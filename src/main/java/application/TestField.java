@@ -15,6 +15,7 @@ import java.lang.annotation.Annotation;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class TestField {
 
@@ -26,13 +27,7 @@ public class TestField {
         // TODO handle better...
         // annotatedClassFinder();
 
-        String[] strings = {"kiscica"};
-
-        try {
-            System.out.println(strings[10]);
-        } catch (Exception e) {
-            LOG.info("main(String[] args)", e.getMessage());
-        }
+        Properties properties = PropertiesHandler.getInstance().getProperties();
 
     }
 

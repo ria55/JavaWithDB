@@ -1,11 +1,14 @@
 package application.helpers;
 
 import application.Main;
+import application.logger.LogHandler;
 
 import java.io.InputStream;
 import java.util.Properties;
 
 public class PropertiesHandler {
+
+    private static final LogHandler LOG = new LogHandler(PropertiesHandler.class, "application_logs.txt");
 
     private static PropertiesHandler handler;
 
@@ -21,6 +24,7 @@ public class PropertiesHandler {
         return handler;
     }
 
+    // funny fact: if this method throws an error, logger cannot write the log, because Properties are needed to write logs... xD
     private Properties loadProperties() {
         try {
             InputStream input = Main.class.getClassLoader().getResourceAsStream(System.getenv("PROP_FILE"));
@@ -28,7 +32,7 @@ public class PropertiesHandler {
             prop.load(input);
             return prop;
         } catch (Exception e) {
-            e.printStackTrace();            // TODO log
+            LOG.error("loadProperties()", e.getMessage());          // xD
             return null;
         }
     }
