@@ -1,7 +1,7 @@
-package application.helpers;
+package complements;
 
 import application.Main;
-import application.logger.LogHandler;
+import complements.logger.LogHandler;
 
 import java.io.InputStream;
 import java.util.Properties;

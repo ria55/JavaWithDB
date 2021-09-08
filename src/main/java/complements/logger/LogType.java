@@ -1,4 +1,4 @@
-package application.logger;
+package complements.logger;
 
 public enum LogType {
 

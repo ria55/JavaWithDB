@@ -1,8 +1,8 @@
 package application.database;
 
 import application.helpers.EnumHelper;
-import application.helpers.PropertiesHandler;
-import application.logger.LogHandler;
+import complements.PropertiesHandler;
+import complements.logger.LogHandler;
 import application.models.Dragon;
 import application.models.Element;
 import application.models.Rarity;

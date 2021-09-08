@@ -1,14 +1,14 @@
 package application;
 
-import application.annotations.AnnotationController;
-import application.annotations.Table;
+import complements.annotations.AnnotationController;
+import complements.annotations.Table;
 import application.database.ColumnName;
 import application.database.DBEngine;
 import application.database.QueryBuilder;
 import application.database.TableName;
 import application.helpers.EnumHelper;
-import application.helpers.PropertiesHandler;
-import application.logger.LogHandler;
+import complements.PropertiesHandler;
+import complements.logger.LogHandler;
 import application.models.Rarity;
 
 import java.io.File;
@@ -16,7 +16,6 @@ import java.lang.annotation.Annotation;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 public class TestField {
 

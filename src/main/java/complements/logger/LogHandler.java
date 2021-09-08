@@ -1,6 +1,6 @@
-package application.logger;
+package complements.logger;
 
-import application.helpers.PropertiesHandler;
+import complements.PropertiesHandler;
 
 import java.io.File;
 import java.io.FileWriter;
