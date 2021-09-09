@@ -1,9 +1,9 @@
 package application;
 
+import complements.DBCreator;
 import complements.annotations.AnnotationController;
 import complements.annotations.Table;
 import complements.database.ColumnName;
-import application.services.DBEngine;
 import complements.database.QueryBuilder;
 import complements.database.TableName;
 import application.helpers.EnumHelper;
@@ -25,8 +25,9 @@ public class TestField {
 
         // TODO replace...
         // TODO handle better...
+        // TODO now it finds annotated classes only in root package, but not in subpackages... FIX!!!
 
-        annotatedClassFinder();
+        new DBCreator().run();
 
     }
 
@@ -46,8 +47,9 @@ public class TestField {
         System.out.println(heroic);
     }
 
+    // TODO should remove, not good... lol
     private static void annotatedClassFinder() {
-        String modelsPackage = PropertiesHandler.getInstance().getProperty("models-package");
+        String modelsPackage = PropertiesHandler.getInstance().getProperty("models-directory");
         Class<? extends Annotation> annotationClass = Table.class;
         URL root = getRoot(modelsPackage);
 
