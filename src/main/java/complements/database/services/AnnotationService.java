@@ -42,7 +42,31 @@ public class AnnotationService {
     }
 
     private Properties getColProps(Field field) {
+
+
+        /* TODO write again: convert the properties to String, and do not create Properties!
+        StringBuilder column = new StringBuilder();
+
+
+        int length = TRANS.getDBColLength(field, type);
+        String isNotNull = TRANS.getDBColNull(field);
+        String isUnique = TRANS.getDBColUnique(field);
+        String defaultValue = TRANS.getDBColDefault(field);
+        String pk = TRANS.getDBColPK(field);
+
+        column.append(TRANS.getDBName(field))
+                .append(type.toString())
+                .append(length > 0 ? "(" + length + ")" : "")
+                .append(" ")
+                .append(isNotNull.isBlank() ? "" : isNotNull + " ")
+                .append(isUnique.isBlank() ? "" : isUnique + " ")
+                .append(pk.isBlank() ? "" : pk + " ")
+                .append(defaultValue.isBlank() ? "" : "DEFAULT " + "'" + defaultValue + "'")
+                .append(",");*/
+
+
         Properties properties = new Properties();
+
         SQLType type = TRANS.getDBColType(field);
 
         properties.put("name", TRANS.getDBName(field));
