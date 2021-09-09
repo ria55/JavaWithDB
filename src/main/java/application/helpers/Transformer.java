@@ -1,8 +1,9 @@
 package application.helpers;
 
-import complements.PropertiesHandler;
-import complements.annotations.Column;
-import complements.annotations.Table;
+import complements.database.services.PropertiesHandler;
+import complements.database.annotations.Column;
+import complements.database.annotations.Table;
+import complements.database.SQLType;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -57,6 +58,22 @@ public class Transformer {
             }
         }
         return convertName(field.getName());
+    }
+
+    public String getTableCol(Field field) {
+        StringBuilder b = new StringBuilder();
+        if (field.isAnnotationPresent(Column.class)) {
+            String name = getDBName(field);
+            String type = field.getAnnotation(Column.class).type().name();
+            if (type.equals(SQLType.DEFAULT.name())) {
+                type = SQLType.convertType(field.getType().getSimpleName());
+            }
+            int length = field.getAnnotation(Column.class).length();
+            boolean isNotNull = field.getAnnotation(Column.class).isNotNull();
+            boolean isUnique = field.getAnnotation(Column.class).isUnique();
+            String defaultValue = field.getAnnotation(Column.class).defaultValue();
+        }
+        return "";
     }
 
     private String convertName(String javaName) {

@@ -1,6 +1,6 @@
 package complements.logger;
 
-import complements.PropertiesHandler;
+import complements.database.services.PropertiesHandler;
 
 import java.io.File;
 import java.io.FileWriter;

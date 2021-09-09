@@ -1,4 +1,4 @@
-package complements.annotations;
+package complements.database.annotations;
 
 import java.lang.annotation.*;
 

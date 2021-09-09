@@ -1,4 +1,4 @@
-package complements;
+package complements.database.services;
 
 import application.Main;
 import complements.logger.LogHandler;

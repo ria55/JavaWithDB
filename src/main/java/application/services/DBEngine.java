@@ -3,7 +3,7 @@ package application.services;
 import complements.database.ColumnName;
 import complements.database.TableName;
 import application.helpers.Transformer;
-import complements.PropertiesHandler;
+import complements.database.services.PropertiesHandler;
 import complements.database.QueryBuilder;
 import complements.logger.LogHandler;
 import application.models.Dragon;

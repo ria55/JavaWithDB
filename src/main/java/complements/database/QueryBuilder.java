@@ -20,14 +20,20 @@ public class QueryBuilder {
                 .append(TRANS.getDBName(table))
                 .append("(");
 
-        for (Field col : columns) {
-            query.append(TRANS.getDBName(col)).append(", ");
-        }
+        addColumns(columns);
 
         query.setLength(query.length() - 2);
         query.append(")");
 
         return this;
+    }
+
+    private void addColumns(Field... columns) {
+        for (Field col : columns) {
+            String name = TRANS.getDBName(col);
+
+            query.append(name).append(", ");
+        }
     }
 
     public QueryBuilder select(TableName tableName, ColumnName... columnNames) {

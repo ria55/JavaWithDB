@@ -1,15 +1,6 @@
-package application;
+package complements.database;
 
-import complements.DBCreator;
-import complements.annotations.AnnotationController;
-import complements.annotations.Table;
-import complements.database.ColumnName;
-import complements.database.QueryBuilder;
-import complements.database.TableName;
-import application.helpers.Transformer;
-import complements.PropertiesHandler;
 import complements.logger.LogHandler;
-import application.models.Rarity;
 
 import java.io.File;
 import java.lang.annotation.Annotation;

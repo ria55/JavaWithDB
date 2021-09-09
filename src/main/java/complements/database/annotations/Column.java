@@ -1,4 +1,4 @@
-package complements.annotations;
+package complements.database.annotations;
 
 import complements.database.SQLType;
 
@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface Column {
     String name() default "";
-    SQLType type() default SQLType.VARCHAR;         // TODO default in method, too... ???
+    SQLType type() default SQLType.DEFAULT;
     int length() default 255;
     boolean isNotNull() default false;
     boolean isUnique() default false;

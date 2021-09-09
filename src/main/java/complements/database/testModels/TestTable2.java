@@ -1,6 +1,9 @@
-package complements.annotations;
+package complements.database.testModels;
 
 import application.models.Rarity;
+import complements.database.annotations.FK;
+import complements.database.annotations.Skip;
+import complements.database.annotations.Table;
 
 @Table
 public class TestTable2 {

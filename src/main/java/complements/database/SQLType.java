@@ -2,6 +2,7 @@ package complements.database;
 
 public enum SQLType {
 
+    DEFAULT,
     INT("byte", "short", "int", "long"),
     VARCHAR("String"),
     BOOL("boolean");

@@ -2,23 +2,23 @@ ERROR::2021-09-08_22:26:28::application.services.DBEngine::connect()::Environmen
 ERROR::2021-09-08_22:27:07::application.services.DBEngine::connect()::Access denied for user 'root'@'localhost' (using password: YES)
 ERROR::2021-09-08_22:44:17::application.services.DBEngine::connect()::Environment variables not found.
 ERROR::2021-09-08_22:46:08::application.services.DBEngine::connect()::Environment variables not found.
-INFO::2021-09-09_16:27:48::complements.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive, skip_number
-INFO::2021-09-09_16:27:48::complements.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
-INFO::2021-09-09_17:02:03::complements.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive, skip_number
-INFO::2021-09-09_17:02:03::complements.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
-INFO::2021-09-09_17:04:02::complements.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive, 
-INFO::2021-09-09_17:04:02::complements.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
-INFO::2021-09-09_17:05:27::complements.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive
-INFO::2021-09-09_17:05:27::complements.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
-INFO::2021-09-09_17:12:03::complements.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive
-INFO::2021-09-09_17:12:03::complements.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
-INFO::2021-09-09_18:35:41::complements.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive
-INFO::2021-09-09_18:35:41::complements.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
-INFO::2021-09-09_18:36:16::complements.DBCreator::run()::test running - Table name: test_table; field names: testID, username, UserEmail, is_inactive
-INFO::2021-09-09_18:36:16::complements.DBCreator::run()::test running - Table name: test_table2; field names: number, text, rarity, test_table
-TEST::2021-09-09_18:38:11::complements.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive
-TEST::2021-09-09_18:38:11::complements.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
-TEST::2021-09-09_18:41:40::complements.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive
-TEST::2021-09-09_18:41:41::complements.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
-TEST::2021-09-09_18:42:59::complements.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive
-TEST::2021-09-09_18:42:59::complements.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
+INFO::2021-09-09_16:27:48::complements.database.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive, skip_number
+INFO::2021-09-09_16:27:48::complements.database.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
+INFO::2021-09-09_17:02:03::complements.database.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive, skip_number
+INFO::2021-09-09_17:02:03::complements.database.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
+INFO::2021-09-09_17:04:02::complements.database.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive,
+INFO::2021-09-09_17:04:02::complements.database.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
+INFO::2021-09-09_17:05:27::complements.database.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive
+INFO::2021-09-09_17:05:27::complements.database.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
+INFO::2021-09-09_17:12:03::complements.database.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive
+INFO::2021-09-09_17:12:03::complements.database.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
+INFO::2021-09-09_18:35:41::complements.database.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive
+INFO::2021-09-09_18:35:41::complements.database.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
+INFO::2021-09-09_18:36:16::complements.database.DBCreator::run()::test running - Table name: test_table; field names: testID, username, UserEmail, is_inactive
+INFO::2021-09-09_18:36:16::complements.database.DBCreator::run()::test running - Table name: test_table2; field names: number, text, rarity, test_table
+TEST::2021-09-09_18:38:11::complements.database.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive
+TEST::2021-09-09_18:38:11::complements.database.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
+TEST::2021-09-09_18:41:40::complements.database.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive
+TEST::2021-09-09_18:41:41::complements.database.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
+TEST::2021-09-09_18:42:59::complements.database.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive
+TEST::2021-09-09_18:42:59::complements.database.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table

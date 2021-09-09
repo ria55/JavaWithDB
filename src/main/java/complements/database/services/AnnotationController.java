@@ -1,6 +1,4 @@
-package complements.annotations;
-
-import complements.database.SQLType;
+package complements.database.services;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
