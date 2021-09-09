@@ -2,14 +2,32 @@ package complements.database;
 
 import application.helpers.Transformer;
 
+import java.lang.reflect.Field;
+
 public class QueryBuilder {
 
-    private static final Transformer TRANS = Transformer.getInstance();
+    private final Transformer TRANS;
 
     private StringBuilder query;
 
     public QueryBuilder() {
         query = new StringBuilder();
+        TRANS = Transformer.getInstance();
+    }
+
+    public QueryBuilder createTable(Class<?> table, Field... columns) {
+        query.append("CREATE TABLE IF NOT EXISTS ")
+                .append(TRANS.getDBName(table))
+                .append("(");
+
+        for (Field col : columns) {
+            query.append(TRANS.getDBName(col)).append(", ");
+        }
+
+        query.setLength(query.length() - 2);
+        query.append(")");
+
+        return this;
     }
 
     public QueryBuilder select(TableName tableName, ColumnName... columnNames) {

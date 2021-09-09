@@ -2,7 +2,6 @@ package complements.database;
 
 import application.helpers.Transformer;
 import complements.PropertiesHandler;
-import complements.annotations.Table;
 import complements.logger.LogHandler;
 
 import java.io.File;

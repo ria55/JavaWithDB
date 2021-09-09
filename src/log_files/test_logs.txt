@@ -1,2 +1,6 @@
 TEST::2021-09-09_18:44:07::complements.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive
 TEST::2021-09-09_18:44:07::complements.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
+TEST::2021-09-09_18:48:33::complements.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive
+TEST::2021-09-09_18:48:33::complements.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
+TEST::2021-09-09_19:06:31::complements.DBCreator::run()::CREATE TABLE IF NOT EXISTS test_table(testID, username, UserEmail, is_inactive);
+TEST::2021-09-09_19:06:31::complements.DBCreator::run()::CREATE TABLE IF NOT EXISTS test_table2(test_table);
