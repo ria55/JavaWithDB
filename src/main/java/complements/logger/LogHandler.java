@@ -8,6 +8,10 @@ import java.io.IOException;
 
 public record LogHandler(Class<?> cl, String filename) {
 
+    public void test(String methodName, String message) {
+        log(methodName, LogType.TEST, message);
+    }
+
     public void info(String methodName, String message) {
         log(methodName, LogType.INFO, message);
     }
