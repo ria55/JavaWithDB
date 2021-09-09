@@ -24,14 +24,19 @@ public class DBCreator {
         List<Class<?>> classes = findAnnotatedClasses(new File(root), new ArrayList<>());
 
         for (Class<?> cl : classes) {
+            StringBuilder b = new StringBuilder();
             String tableName = Transformer.getDBName(cl);
-            System.out.println(tableName);
-            for (Field field : cl.getDeclaredFields()) {
-                if (!field.isAnnotationPresent(Skip.class)) {
-                    String fieldName = Transformer.getDBName(field);
-                    System.out.println("\t" + fieldName);
+            b.append("Table name: ").append(tableName).append("; ");
+            b.append("field names: ");
+
+            for (int i = 0; i < cl.getDeclaredFields().length; i++) {
+                String fieldName = Transformer.getDBName(cl.getDeclaredFields()[i]);
+                b.append(fieldName);
+                if (i < cl.getDeclaredFields().length - 1) {
+                    b.append(", ");
                 }
             }
+            LOG.info("run()", b.toString());
         }
     }
 
