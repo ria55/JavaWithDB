@@ -184,7 +184,7 @@ public class DBEngine {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, dragon.getUniqueName());
             ps.setString(2, dragon.getDragonText());
-            ps.setInt(3, Transformer.getDBIndex(dragon.getRarity()));
+            ps.setInt(3, Transformer.getInstance().getDBIndex(dragon.getRarity()));
 
             ps.executeUpdate();
             ps.close();

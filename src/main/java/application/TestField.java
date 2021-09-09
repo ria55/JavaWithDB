@@ -31,22 +31,6 @@ public class TestField {
 
     }
 
-    private static void testEnumNameHandling() {
-        String query1 = new QueryBuilder().select(TableName.DRAGON, ColumnName.ID, ColumnName.UNIQUE_NAME, ColumnName.DRAGON_TEXT)
-                .where(ColumnName.ID, false)
-                .build();
-        String query2 = new QueryBuilder().insert(TableName.DRAGON, ColumnName.UNIQUE_NAME, ColumnName.DRAGON_TEXT, ColumnName.DESIGN)
-                .build();
-
-        String veryRare = Transformer.getDBName(Rarity.VERY_RARE, true);
-        String heroic = Transformer.getDBName(Rarity.HEROIC, true);
-
-        System.out.println(query1);
-        System.out.println(query2);
-        System.out.println(veryRare);
-        System.out.println(heroic);
-    }
-
     // TODO should remove, not good... lol
     /*private static void annotatedClassFinder() {
         String modelsPackage = PropertiesHandler.getInstance().getProperty("models-directory");

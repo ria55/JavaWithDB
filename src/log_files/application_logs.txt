@@ -4,3 +4,11 @@ ERROR::2021-09-08_22:44:17::application.services.DBEngine::connect()::Environmen
 ERROR::2021-09-08_22:46:08::application.services.DBEngine::connect()::Environment variables not found.
 INFO::2021-09-09_16:27:48::complements.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive, skip_number
 INFO::2021-09-09_16:27:48::complements.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
+INFO::2021-09-09_17:02:03::complements.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive, skip_number
+INFO::2021-09-09_17:02:03::complements.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
+INFO::2021-09-09_17:04:02::complements.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive, 
+INFO::2021-09-09_17:04:02::complements.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
+INFO::2021-09-09_17:05:27::complements.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive
+INFO::2021-09-09_17:05:27::complements.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
+INFO::2021-09-09_17:12:03::complements.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive
+INFO::2021-09-09_17:12:03::complements.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table

@@ -4,6 +4,8 @@ import application.helpers.Transformer;
 
 public class QueryBuilder {
 
+    private static final Transformer TRANS = Transformer.getInstance();
+
     private StringBuilder query;
 
     public QueryBuilder() {
@@ -18,13 +20,13 @@ public class QueryBuilder {
             query.append("*");
         }
         query.append(" FROM ")
-            .append(Transformer.getDBName(tableName, false));
+            .append(TRANS.getDBName(tableName, false));
         return this;
     }
 
     public QueryBuilder where(ColumnName columnName, boolean useLike) {
         query.append(" WHERE ")
-                .append(Transformer.getDBName(columnName, false))
+                .append(TRANS.getDBName(columnName, false))
                 .append( (useLike ? " LIKE " : " = ") )
                 .append("?");
         return this;
@@ -32,7 +34,7 @@ public class QueryBuilder {
 
     public QueryBuilder insert(TableName tableName, ColumnName... columnNames) {
         query.append("INSERT INTO ")
-                .append(Transformer.getDBName(tableName, false));
+                .append(TRANS.getDBName(tableName, false));
 
         int questionMark = (columnNames.length > 0 ? columnNames.length : tableName.COL_NUM);
 
@@ -49,7 +51,7 @@ public class QueryBuilder {
 
     private void addColumns(ColumnName... columnNames) {
         for (ColumnName columnName : columnNames) {
-            query.append(Transformer.getDBName(columnName, false))
+            query.append(TRANS.getDBName(columnName, false))
                 .append(", ");
         }
         query.setLength(query.length() - 2);
