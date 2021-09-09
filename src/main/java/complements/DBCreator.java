@@ -24,7 +24,7 @@ public class DBCreator {
         List<Class<?>> classes = new ClassFinder().loadAnnotatedClasses();
 
         for (Class<?> cl : classes) {
-            StringBuilder b = new StringBuilder("test running - ");
+            StringBuilder b = new StringBuilder();
             String tableName = TRANSFORMER.getDBName(cl);
             b.append("Table name: ").append(tableName).append("; ");
             b.append("field names: ");
@@ -38,7 +38,7 @@ public class DBCreator {
 
             b.setLength(b.length() - 2);
 
-            LOG.info("run()", b.toString());
+            LOG.test("run()", b.toString());
         }
     }
 
