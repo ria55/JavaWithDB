@@ -15,13 +15,11 @@ import java.util.List;
 public class DBCreator {
 
     private static final LogHandler LOG = new LogHandler(DBCreator.class, "application_logs.txt");
-    private static final Class<? extends Annotation> ANNOTATION = Table.class;
 
     private static final Transformer TRANSFORMER = Transformer.getInstance();
 
     public void run() {
-        String root = PropertiesHandler.getInstance().getProperty("models-directory");
-        List<Class<?>> classes = new ClassFinder().loadAnnotatedClasses();
+        List<Class<?>> classes = new ClassFinder(Table.class).loadAnnotatedClasses();
 
         for (Class<?> cl : classes) {
             StringBuilder b = new StringBuilder();

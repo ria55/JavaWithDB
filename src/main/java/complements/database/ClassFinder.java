@@ -13,9 +13,13 @@ import java.util.List;
 public class ClassFinder {
 
     private static final LogHandler LOG = new LogHandler(ClassFinder.class, "application_logs.txt");
-    private static final Class<? extends Annotation> ANNOTATION = Table.class;
 
-    private static final Transformer TRANSFORMER = Transformer.getInstance();
+    private final Class<? extends Annotation> ANNOTATION;
+    private final Transformer TRANSFORMER = Transformer.getInstance();
+
+    public ClassFinder(Class<? extends Annotation> annotation) {
+        ANNOTATION = annotation;
+    }
 
     public List<Class<?>> loadAnnotatedClasses() {
         String root = PropertiesHandler.getInstance().getProperty("models-directory");

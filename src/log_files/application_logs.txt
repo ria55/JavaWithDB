@@ -16,3 +16,7 @@ INFO::2021-09-09_18:35:41::complements.DBCreator::run()::Table name: test_table;
 INFO::2021-09-09_18:35:41::complements.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
 INFO::2021-09-09_18:36:16::complements.DBCreator::run()::test running - Table name: test_table; field names: testID, username, UserEmail, is_inactive
 INFO::2021-09-09_18:36:16::complements.DBCreator::run()::test running - Table name: test_table2; field names: number, text, rarity, test_table
+TEST::2021-09-09_18:38:11::complements.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive
+TEST::2021-09-09_18:38:11::complements.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
+TEST::2021-09-09_18:41:40::complements.DBCreator::run()::Table name: test_table; field names: testID, username, UserEmail, is_inactive
+TEST::2021-09-09_18:41:41::complements.DBCreator::run()::Table name: test_table2; field names: number, text, rarity, test_table
