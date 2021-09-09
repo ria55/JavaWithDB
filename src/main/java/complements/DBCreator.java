@@ -15,21 +15,21 @@ public class DBCreator {
 
     public void run() {
         String root = PropertiesHandler.getInstance().getProperty("models-directory");
-        List<Class<?>> classes = collectAgain(new File(root), new ArrayList<>());
+        List<Class<?>> classes = findAnnotatedClasses(new File(root), new ArrayList<>());
 
         for (Class<?> cl : classes) {
             System.out.println(cl.getName());
         }
     }
 
-    private List<Class<?>> collectAgain(File dirPath, List<Class<?>> classes) {
+    private List<Class<?>> findAnnotatedClasses(File dirPath, List<Class<?>> classes) {
         File[] filesList = dirPath.listFiles();
         if (filesList != null) {
             for(File file : filesList) {
                 if(file.isFile() && file.toString().contains(".java")) {
                     createClassAndAdd(file.toString(), classes);
                 } else {
-                    collectAgain(file, classes);
+                    findAnnotatedClasses(file, classes);
                 }
             }
         }
@@ -49,8 +49,9 @@ public class DBCreator {
 
     // TODO move to other class?
     public String transformPath(String path) {
+        String rootDir = PropertiesHandler.getInstance().getProperty("project-source-dir") + File.separatorChar;
         int dot = path.lastIndexOf('.');
-        int root = path.lastIndexOf("java/") + 5;
+        int root = path.lastIndexOf(rootDir) + rootDir.length();
         return path.substring(root, dot).replace(File.separatorChar, '.');
     }
 
