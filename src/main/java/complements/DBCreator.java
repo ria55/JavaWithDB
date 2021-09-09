@@ -11,10 +11,13 @@ import java.util.List;
 public class DBCreator {
 
     private static final LogHandler LOG = new LogHandler(DBCreator.class, "application_logs.txt");
-    private static final Class<? extends Annotation> annotation = Table.class;
+    private static final Class<? extends Annotation> ANNOTATION = Table.class;
+
+    // TODO delete this if only findAnnotatedClasses() use it
+    private final PropertiesHandler PROPS = PropertiesHandler.getInstance();
 
     public void run() {
-        String root = PropertiesHandler.getInstance().getProperty("models-directory");
+        String root = PROPS.getProperty("models-directory");
         List<Class<?>> classes = findAnnotatedClasses(new File(root), new ArrayList<>());
 
         for (Class<?> cl : classes) {
@@ -39,7 +42,7 @@ public class DBCreator {
     private void createClassAndAdd(String className, List<Class<?>> classes) {
         try {
             Class<?> cl = Class.forName(transformPath(className));
-            if (cl.isAnnotationPresent(annotation)) {
+            if (cl.isAnnotationPresent(ANNOTATION)) {
                 classes.add(cl);
             }
         } catch (ClassNotFoundException e) {
@@ -49,7 +52,7 @@ public class DBCreator {
 
     // TODO move to other class?
     public String transformPath(String path) {
-        String rootDir = PropertiesHandler.getInstance().getProperty("project-source-dir") + File.separatorChar;
+        String rootDir = PROPS.getProperty("project-source-dir") + File.separatorChar;
         int dot = path.lastIndexOf('.');
         int root = path.lastIndexOf(rootDir) + rootDir.length();
         return path.substring(root, dot).replace(File.separatorChar, '.');
