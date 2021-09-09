@@ -3,12 +3,11 @@ package complements.database;
 import application.helpers.Transformer;
 import complements.database.annotations.Skip;
 import complements.database.annotations.Table;
+import complements.database.services.AnnotationService;
 import complements.logger.LogHandler;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class DBCreator {
 
@@ -19,11 +18,22 @@ public class DBCreator {
     public void run() {
         List<Class<?>> classes = new ClassFinder(Table.class).loadAnnotatedClasses();
 
-        List<String> tableStatements = new ArrayList<>();
+        AnnotationService service = new AnnotationService();
+        Map<String, List<Properties>> allTables = service.getAllTables(classes);
 
-        for (Class<?> cl : classes) {
-            tableStatements.add(createTableStatement(cl));
+        for (String key : allTables.keySet()) {
+            System.out.println(key);
+            for (Properties props : allTables.get(key)) {
+                System.out.println("\t" + props.get("name"));
+                System.out.println("\t\ttype: " + props.get("type"));
+                System.out.println("\t\tlength: " + props.get("length"));
+                System.out.println("\t\tisNotNull: " + props.get("isNotNull"));
+                System.out.println("\t\tisUnique: " + props.get("isUnique"));
+                System.out.println("\t\tdefault: " + props.get("default"));
+                System.out.println("\t\tpk: " + props.get("pk"));
+            }
         }
+
     }
 
     private String createTableStatement(Class<?> cl) {

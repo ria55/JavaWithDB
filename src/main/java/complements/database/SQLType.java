@@ -2,26 +2,35 @@ package complements.database;
 
 public enum SQLType {
 
-    DEFAULT,
-    INT("byte", "short", "int", "long"),
-    VARCHAR("String"),
-    BOOL("boolean");
+    // TODO check max length!
+    DEFAULT(0),
+    INT(11, "byte", "short", "int"),
+    INT_UNSIGNED(0, "long"),
+    VARCHAR(255, "String"),
+    BOOL(0,"boolean");
 
     private final String[] javaTypes;
+    public final int maxLength;
 
-    SQLType(String... strings) {
+    SQLType(int maxLength, String... strings) {
+        this.maxLength = maxLength;
         javaTypes = strings;
     }
 
-    public static String convertType(String javaType) {
+    @Override
+    public String toString() {
+        return name().replace("_", " ");
+    }
+
+    public static SQLType convertType(String javaType) {
         for (SQLType t : SQLType.values()) {
             for (String s : t.javaTypes) {
                 if (s.equalsIgnoreCase(javaType)) {
-                    return t.name();
+                    return t;
                 }
             }
         }
-        return VARCHAR.name();
+        return VARCHAR;
     }
 
 }

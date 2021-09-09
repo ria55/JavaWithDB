@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 public @interface Column {
     String name() default "";
     SQLType type() default SQLType.DEFAULT;
-    int length() default 255;
+    int length() default 0;
     boolean isNotNull() default false;
     boolean isUnique() default false;
     String defaultValue() default "";
