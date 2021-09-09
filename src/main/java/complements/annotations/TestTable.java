@@ -18,4 +18,7 @@ public class TestTable {    // default: test_table
     @Column(type = SQLType.INT, length = 11, defaultValue = "0")
     private boolean isInactive;
 
+    @Skip
+    private int skipNumber;
+
 }

@@ -1,6 +1,6 @@
 package complements.database;
 
-import application.helpers.EnumHelper;
+import application.helpers.Transformer;
 
 public class QueryBuilder {
 
@@ -18,13 +18,13 @@ public class QueryBuilder {
             query.append("*");
         }
         query.append(" FROM ")
-            .append(EnumHelper.getDBName(tableName, false));
+            .append(Transformer.getDBName(tableName, false));
         return this;
     }
 
     public QueryBuilder where(ColumnName columnName, boolean useLike) {
         query.append(" WHERE ")
-                .append(EnumHelper.getDBName(columnName, false))
+                .append(Transformer.getDBName(columnName, false))
                 .append( (useLike ? " LIKE " : " = ") )
                 .append("?");
         return this;
@@ -32,7 +32,7 @@ public class QueryBuilder {
 
     public QueryBuilder insert(TableName tableName, ColumnName... columnNames) {
         query.append("INSERT INTO ")
-                .append(EnumHelper.getDBName(tableName, false));
+                .append(Transformer.getDBName(tableName, false));
 
         int questionMark = (columnNames.length > 0 ? columnNames.length : tableName.COL_NUM);
 
@@ -49,7 +49,7 @@ public class QueryBuilder {
 
     private void addColumns(ColumnName... columnNames) {
         for (ColumnName columnName : columnNames) {
-            query.append(EnumHelper.getDBName(columnName, false))
+            query.append(Transformer.getDBName(columnName, false))
                 .append(", ");
         }
         query.setLength(query.length() - 2);

@@ -2,7 +2,7 @@ package application.services;
 
 import complements.database.ColumnName;
 import complements.database.TableName;
-import application.helpers.EnumHelper;
+import application.helpers.Transformer;
 import complements.PropertiesHandler;
 import complements.database.QueryBuilder;
 import complements.logger.LogHandler;
@@ -184,7 +184,7 @@ public class DBEngine {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, dragon.getUniqueName());
             ps.setString(2, dragon.getDragonText());
-            ps.setInt(3, EnumHelper.getDBIndex(dragon.getRarity()));
+            ps.setInt(3, Transformer.getDBIndex(dragon.getRarity()));
 
             ps.executeUpdate();
             ps.close();

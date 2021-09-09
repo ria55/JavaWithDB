@@ -6,7 +6,7 @@ import complements.annotations.Table;
 import complements.database.ColumnName;
 import complements.database.QueryBuilder;
 import complements.database.TableName;
-import application.helpers.EnumHelper;
+import application.helpers.Transformer;
 import complements.PropertiesHandler;
 import complements.logger.LogHandler;
 import application.models.Rarity;
@@ -38,8 +38,8 @@ public class TestField {
         String query2 = new QueryBuilder().insert(TableName.DRAGON, ColumnName.UNIQUE_NAME, ColumnName.DRAGON_TEXT, ColumnName.DESIGN)
                 .build();
 
-        String veryRare = EnumHelper.getDBName(Rarity.VERY_RARE, true);
-        String heroic = EnumHelper.getDBName(Rarity.HEROIC, true);
+        String veryRare = Transformer.getDBName(Rarity.VERY_RARE, true);
+        String heroic = Transformer.getDBName(Rarity.HEROIC, true);
 
         System.out.println(query1);
         System.out.println(query2);
@@ -48,7 +48,7 @@ public class TestField {
     }
 
     // TODO should remove, not good... lol
-    private static void annotatedClassFinder() {
+    /*private static void annotatedClassFinder() {
         String modelsPackage = PropertiesHandler.getInstance().getProperty("models-directory");
         Class<? extends Annotation> annotationClass = Table.class;
         URL root = getRoot(modelsPackage);
@@ -64,7 +64,7 @@ public class TestField {
                 }
             }
         }
-    }
+    }*/
 
     private static URL getRoot(String packageName) {
         ClassLoader cll = ClassLoader.getSystemClassLoader();

@@ -23,46 +23,7 @@ public class AnnotationController {
         return (!Objects.isNull(cl) && cl.isAnnotationPresent(annotationClass));
     }
 
-    private String convertName(String javaName) {
-        StringBuilder b = new StringBuilder(javaName.substring(0, 1).toLowerCase());
-        for (int i = 1; i < javaName.length(); i++) {
-            char c = javaName.charAt(i);
-            if (Character.isUpperCase(c)) {
-                b.append("_");
-                c = Character.toLowerCase(c);
-            }
-            b.append(c);
-        }
-        return b.toString();
-    }
-
-    private String getDBName(Field field) {
-        if (isAnnotated(field, Column.class)) {
-            String name = field.getAnnotation(Column.class).name();
-            if (!name.isBlank()) {
-                return name;
-            }
-        }
-        return convertName(field.getName());
-    }
-
-    private String getDBName(Object object) {
-        String name = object.getClass().getAnnotation(Table.class).name();
-        if (name.isBlank()) {
-            return convertName(object.getClass().getSimpleName());
-        }
-        return name;
-    }
-
-    private String getDBName(Class<?> cl) {
-        String name = cl.getAnnotation(Table.class).name();
-        if (name.isBlank()) {
-            return convertName(cl.getSimpleName());
-        }
-        return name;
-    }
-
-    public String getTableStatement(Class<?> cl) {
+    /*public String getTableStatement(Class<?> cl) {
         StringBuilder b = new StringBuilder("CREATE TABLE IF NOT EXISTS ");
         b.append(getDBName(cl)).append(" (");
 
@@ -81,6 +42,6 @@ public class AnnotationController {
         b.append("\n);");
 
         return b.toString();
-    }
+    }*/
 
 }

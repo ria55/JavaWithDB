@@ -1,10 +1,13 @@
 package complements;
 
+import application.helpers.Transformer;
+import complements.annotations.Skip;
 import complements.annotations.Table;
 import complements.logger.LogHandler;
 
 import java.io.File;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +24,14 @@ public class DBCreator {
         List<Class<?>> classes = findAnnotatedClasses(new File(root), new ArrayList<>());
 
         for (Class<?> cl : classes) {
-            System.out.println(cl.getName());
+            String tableName = Transformer.getDBName(cl);
+            System.out.println(tableName);
+            for (Field field : cl.getDeclaredFields()) {
+                if (!field.isAnnotationPresent(Skip.class)) {
+                    String fieldName = Transformer.getDBName(field);
+                    System.out.println("\t" + fieldName);
+                }
+            }
         }
     }
 
