@@ -14,7 +14,7 @@ import java.util.List;
 
 public class DBCreator {
 
-    private static final LogHandler LOG = new LogHandler(DBCreator.class, "application_logs.txt");
+    private static final LogHandler LOG = new LogHandler(DBCreator.class, "test_logs.txt");
 
     private static final Transformer TRANSFORMER = Transformer.getInstance();
 
