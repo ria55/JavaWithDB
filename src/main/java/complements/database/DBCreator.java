@@ -19,18 +19,12 @@ public class DBCreator {
         List<Class<?>> classes = new ClassFinder(Table.class).loadAnnotatedClasses();
 
         AnnotationService service = new AnnotationService();
-        Map<String, List<Properties>> allTables = service.getAllTables(classes);
+        Map<String, List<String>> allTables = service.getAllTables(classes);
 
         for (String key : allTables.keySet()) {
             System.out.println(key);
-            for (Properties props : allTables.get(key)) {
-                System.out.println("\t" + props.get("name"));
-                System.out.println("\t\ttype: " + props.get("type"));
-                System.out.println("\t\tlength: " + props.get("length"));
-                System.out.println("\t\tisNotNull: " + props.get("isNotNull"));
-                System.out.println("\t\tisUnique: " + props.get("isUnique"));
-                System.out.println("\t\tdefault: " + props.get("default"));
-                System.out.println("\t\tpk: " + props.get("pk"));
+            for (String table : allTables.get(key)) {
+                System.out.println("\t" + table);
             }
         }
 

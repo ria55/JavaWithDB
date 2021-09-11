@@ -17,54 +17,58 @@ public class AnnotationService {
 
     public AnnotationService() {}
 
-    public Map<String, List<Properties>> getAllTables(List<Class<?>> classes) {
-        Map<String, List<Properties>> allTables = new HashMap<>();
+    public Map<String, List<String>> getAllTables(List<Class<?>> classes) {
+        Map<String, List<String>> allTables = new HashMap<>();
 
         for (Class<?> cl : classes) {
             String tableName = TRANS.getDBName(cl);
-            List<Properties> props = getTable(cl);
+            List<String> props = getTable(cl);
             allTables.put(tableName, props);
         }
 
         return allTables;
     }
 
-    private List<Properties> getTable(Class<?> cl) {
-        List<Properties> tableCols = new ArrayList<>();
+    private List<String> getTable(Class<?> cl) {
+        List<String> tableCols = new ArrayList<>();
+        Field[] fields = cl.getDeclaredFields();
 
-        for (Field field : cl.getDeclaredFields()) {
-            if (!field.isAnnotationPresent(Skip.class)) {
-                tableCols.add(getColProps(field));
+        for (int i = 0; i < fields.length; i++) {
+            if (!fields[i].isAnnotationPresent(Skip.class)) {
+                String col = getColSQL(fields[i]);
+                if (i == fields.length - 1) {
+                    col = col.substring(0, col.length() - 1);           // TODO there is a little bug in the system, tralalala...
+                }
+                tableCols.add(col);
             }
         }
 
         return tableCols;
     }
 
-    private Properties getColProps(Field field) {
+    private String getColSQL(Field field) {
+        StringBuilder column = new StringBuilder(TRANS.getDBName(field) + " ");
 
-
-        /* TODO write again: convert the properties to String, and do not create Properties!
-        StringBuilder column = new StringBuilder();
-
-
+        SQLType type = TRANS.getDBColType(field);
         int length = TRANS.getDBColLength(field, type);
         String isNotNull = TRANS.getDBColNull(field);
         String isUnique = TRANS.getDBColUnique(field);
         String defaultValue = TRANS.getDBColDefault(field);
         String pk = TRANS.getDBColPK(field);
 
-        column.append(TRANS.getDBName(field))
-                .append(type.toString())
+        column.append(type.toString())
                 .append(length > 0 ? "(" + length + ")" : "")
-                .append(" ")
-                .append(isNotNull.isBlank() ? "" : isNotNull + " ")
-                .append(isUnique.isBlank() ? "" : isUnique + " ")
-                .append(pk.isBlank() ? "" : pk + " ")
-                .append(defaultValue.isBlank() ? "" : "DEFAULT " + "'" + defaultValue + "'")
-                .append(",");*/
+                .append(isNotNull.isBlank() ? "" : " " + isNotNull + " ")
+                .append(isUnique.isBlank() ? "" : " " + isUnique + " ")
+                .append(pk.isBlank() ? "" : " " + pk + " ")
+                .append(defaultValue.isBlank() ? "" : " DEFAULT " + "'" + defaultValue + "'")
+                .append(",");
 
+        return column.toString();
+    }
 
+    @Deprecated
+    private Properties getColProps(Field field) {
         Properties properties = new Properties();
 
         SQLType type = TRANS.getDBColType(field);
